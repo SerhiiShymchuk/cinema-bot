@@ -10,12 +10,17 @@ console.log('бот почав роботу')
 
 bot.addListener('message', msg => {
     console.log('working')
+    const chatId = helper.getChatId(msg)
     if (msg.text === kb.home.favourite) {
-        
-    } else if (msg.text === kb.home.films) {
 
-    } else if (msg.text === kb.home.cinemas) {
-        
+    } else if (msg.text === kb.home.film) {
+        bot.sendMessage(chatId, 'Вибери жанр', {
+            reply_markup: {keyboard: keyboard.films} 
+        })
+    } else if (msg.text === kb.back) {
+        bot.sendMessage(chatId, 'Що хочеш глянути?', {
+            reply_markup: {keyboard: keyboard.home} 
+        })
     }
 })
 bot.onText(/\/start/, msg => {
